@@ -12,13 +12,13 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/studen
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// READ: Return all assignments, optionally filtered by Pending or Completed status.
+// READ: Return all assignments, optionally filtered by status.
 app.get('/api/assignments', async (req, res) => {
   try {
     const filter = {};
     if (req.query.status && req.query.status !== 'All') {
-      if (!['Pending', 'Completed'].includes(req.query.status)) {
-        return res.status(400).json({ message: 'Status must be Pending or Completed.' });
+      if (!['Pending', 'Partially completed', 'Completed'].includes(req.query.status)) {
+        return res.status(400).json({ message: 'Status must be Pending, Partially completed, or Completed.' });
       }
       filter.status = req.query.status;
     }
@@ -69,12 +69,12 @@ app.put('/api/assignments/:id', async (req, res) => {
   }
 });
 
-// UPDATE: Change an assignment between Pending and Completed.
+// UPDATE: Change an assignment status.
 app.patch('/api/assignments/:id/status', async (req, res) => {
   try {
     const { status } = req.body;
-    if (!['Pending', 'Completed'].includes(status)) {
-      return res.status(400).json({ message: 'Status must be Pending or Completed.' });
+    if (!['Pending', 'Partially completed', 'Completed'].includes(status)) {
+      return res.status(400).json({ message: 'Status must be Pending, Partially completed, or Completed.' });
     }
 
     const assignment = await Assignment.findByIdAndUpdate(

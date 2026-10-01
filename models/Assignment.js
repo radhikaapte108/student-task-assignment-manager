@@ -32,7 +32,7 @@ const assignmentSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Pending', 'Completed'],
+      enum: ['Pending', 'Partially completed', 'Completed'],
       default: 'Pending',
       required: true
     }

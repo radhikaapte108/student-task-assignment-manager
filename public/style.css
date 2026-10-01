@@ -220,6 +220,7 @@ input:focus, textarea:focus, select:focus {
 .badge-row { flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
 .badge { padding: 5px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; white-space: nowrap; }
 .status-pending { color: #9a6510; background: #fff4d6; }
+.status-partially-completed { color: #28618a; background: #e2f1fb; }
 .status-completed { color: #14764f; background: #dff5e9; }
 .priority-low { color: #52647a; background: #eef1f5; }
 .priority-medium { color: #815e13; background: #fff4d6; }

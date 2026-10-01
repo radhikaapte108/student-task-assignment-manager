@@ -63,7 +63,7 @@ function createAssignmentCard(assignment) {
 
   const badges = document.createElement('div');
   badges.className = 'badge-row';
-  const statusClass = assignment.status === 'Completed' ? 'status-completed' : 'status-pending';
+  const statusClass = `status-${assignment.status.toLowerCase().replaceAll(' ', '-')}`;
   const priorityClass = `priority-${assignment.priority.toLowerCase()}`;
   badges.append(makeBadge(assignment.status, statusClass), makeBadge(`${assignment.priority} priority`, priorityClass));
   top.append(badges);
