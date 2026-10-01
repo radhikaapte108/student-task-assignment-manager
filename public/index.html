@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple student assignment manager built with Express and MongoDB.">
+  <title>Student Assignment Manager</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Student Assignment Manager home">
+        <span class="brand-mark" aria-hidden="true">SA</span>
+        <span>Student Assignment Manager</span>
+      </a>
+      <span class="project-label">DBMS · Semester 5 · LCA-3</span>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">YOUR STUDY ORGANIZER</p>
+        <h1 id="page-title">Assignments</h1>
+        <p class="intro-copy">Keep track of what’s due and what you’ve finished.</p>
+      </div>
+      <div class="assignment-count" aria-live="polite">
+        <span id="assignment-count">0</span>
+        <span>shown</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Assignment management">
+      <section class="panel form-panel" aria-labelledby="form-heading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">ASSIGNMENT DETAILS</p>
+            <h2 id="form-heading">Add an assignment</h2>
+          </div>
+          <span class="heading-icon" aria-hidden="true">＋</span>
+        </div>
+
+        <form id="assignment-form">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" maxlength="80" placeholder="e.g. Database Management" required>
+
+          <label for="title">Assignment title</label>
+          <input id="title" name="title" type="text" maxlength="120" placeholder="e.g. MongoDB case study" required>
+
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3" maxlength="1000" placeholder="Add a few details about the task" required></textarea>
+
+          <div class="form-row">
+            <div>
+              <label for="deadline">Deadline</label>
+              <input id="deadline" name="deadline" type="date" required>
+            </div>
+            <div>
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="status">Status</label>
+          <select id="status" name="status" required>
+            <option value="Pending" selected>Pending</option>
+            <option value="Completed">Completed</option>
+          </select>
+
+          <div class="form-actions">
+            <button id="submit-button" class="button button-primary" type="submit">Add assignment</button>
+            <button id="cancel-edit" class="button button-quiet hidden" type="button">Cancel</button>
+          </div>
+          <p id="form-message" class="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="list-heading">
+        <div class="list-toolbar">
+          <div>
+            <p class="eyebrow">YOUR WORKLOAD</p>
+            <h2 id="list-heading">All assignments</h2>
+          </div>
+          <div class="filter-control">
+            <label for="status-filter">Show</label>
+            <select id="status-filter" aria-label="Filter assignments by status">
+              <option value="All">All statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="list-message" class="message" role="status" aria-live="polite"></p>
+        <div id="assignment-list" class="assignment-list" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <footer class="page-footer">
+      <span>Simple, focused, and ready for your next deadline.</span>
+      <span>Powered by Express · MongoDB · Mongoose</span>
+    </footer>
+  </main>
+</body>
+</html>
